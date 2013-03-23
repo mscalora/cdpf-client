@@ -87,6 +87,10 @@ fi
 if [ -f /etc/lighttpd/lighttpd.conf ] ; then
 	echo "Updating lighttpd config as needed..."
 	sudo sed -i "s/www-data/pi/" /etc/lighttpd/lighttpd.conf
+	fgrep -q '/home/pi/sync'/etc/lighttpd/lighttpd.conf || {
+		echo "Adding alias for image URLs
+		echo 'alias.url = ( "/sync/" => "/home/pi/sync/" )' >> /etc/lighttpd/lighttpd.conf
+	}	
 	if [ ! -f /etc/lighttpd/conf-enabled/10-cgi.conf ] ; then
 		sudo ln -s /etc/lighttpd/conf-available/10-cgi.conf /etc/lighttpd/conf-enabled/10-cgi.conf
 	fi
@@ -102,3 +106,12 @@ else
 	echo ""
 	echo "and then rerun the cdpf setup"
 fi
+
+echo "Configuring cron job..."
+crontab -l | freg -q "cdpf-sync" && {
+	echo "cron job already exists"
+} || {
+	echo "adding cron job..."
+	crontab -l >/tmp/crontab-cdpf.txt
+	echo "*/15 * * * * /home/pi/cdpf-sync.sh" >>/tmp/crontab-cdpf.txt
+}
