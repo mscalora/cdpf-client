@@ -22,6 +22,11 @@ if [ ! -x "`which feh`" ] ; then
 	exit 1
 fi
 
+if [ ! -d ~/sync ] ; then
+	echo "Creating sync folder..."
+	mkdir -p ~/sync
+fi
+
 if [ ! -f ~/yudit.ttf ] ; then
 	echo "Creating font link..."
 	ln -s /usr/share/feh/fonts/yudit.ttf ~/yudit.ttf
