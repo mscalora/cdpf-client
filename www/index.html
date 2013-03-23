@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=2.0" />
+		<style type="text/css">
+			body {
+				zoom: 1.2;
+			}
+			p {
+				margin: 6px; 
+			}
+			.nice-button {
+				-moz-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+				-webkit-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+				box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+				background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #79bbff), color-stop(1, #378de5) );
+				background:-moz-linear-gradient( center top, #79bbff 5%, #378de5 100% );
+				background:linear-gradient( center top, #79bbff 5%, #378de5 100% );
+				background-color:#79bbff;
+				-moz-border-radius:10px;
+				-webkit-border-radius:10px;
+				border-radius:10px;
+				border:1px solid #84bbf3;
+				display:inline-block;
+				color:#ffffff;
+				font-family:arial;
+				font-size:16px;
+				font-weight:bold;
+				padding:6px 14px;
+				text-decoration:none;
+				text-shadow:1px 1px 0px #528ecc;
+			}
+			.nice-button:hover {
+				background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff) );
+				background:-moz-linear-gradient( center top, #378de5 5%, #79bbff 100% );
+				background:linear-gradient( center top, #378de5 5%, #79bbff 100% );
+				background-color:#378de5;
+			}
+			.nice-button:active {
+				position:relative;
+				top:1px;
+			}
+		</style>
+	</head>
+	<body>
+		<center>
+		<h3>CDPF</h3>
+		<p><a class='nice-button' href='/cgi-bin/prev.cgi'>Previous</a> <a class='nice-button' href='/cgi-bin/next.cgi'>Next</a></p>
+		<p><a class='nice-button' href='/cgi-bin/list.cgi'>Photo List</a></p>
+		<p><a class='nice-button' href='/cgi-bin/log.cgi'>View Log</a></p>
+		<p><a class='nice-button' href='/cgi-bin/sync.cgi'>Sync Photos</a></p>
+		<p><a class='nice-button' href='/cgi-bin/ps.cgi'>Process List</a></p>
+		<p><a class='nice-button' href='/cgi-bin/ifconfig.cgi'>Network Config</a></p>
+	</body>
+	<script>
+		var width = 0;
+		jQuery.each([$('p:eq(0) a'),$('p:not(:eq(0)) a')],function(){
+			this.each(function(){ width = width<$(this).width() ? width = $(this).width() : width;})
+				.css({display:'inline-block',minWidth:width});
+		});
+	</script>
+</html>
