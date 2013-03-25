@@ -43,7 +43,6 @@ echo "Source files: $SETUP_PATH"
 
 echo "Copying scripts..."
 for f in $(ls "$SETUP_PATH/home" ) ; do
-	echo "$f"
 	cp -v "$SETUP_PATH/home/$f" "$PWD/"
 	if [[ $f =~ .sh$ ]] ; then
 		sudo chmod ug+x "$PWD/$f"
@@ -57,7 +56,6 @@ sudo mkdir -p "/var/www/cgi-bin"
 sudo chgrp pi "/var/www/cgi-bin"
 sudo chmod g+wx "/var/www/cgi-bin"
 for f in $(ls "$SETUP_PATH/www" ) ; do
-	echo "$f"
 	if [[ $f =~ .cgi$ ]] ; then
 		cp -v "$SETUP_PATH/www/$f" "/var/www/cgi-bin/"
 		chmod ug+x "/var/www/cgi-bin/$f"
@@ -68,7 +66,6 @@ done
 
 echo "Copying bin..."
 for f in $(ls "$SETUP_PATH/bin" ) ; do
-	echo "$f"
 	sudo cp -v "$SETUP_PATH/bin/$f" "/usr/local/bin/"
 	sudo chmod uga+x "/usr/local/bin/$f"
 done
@@ -87,7 +84,7 @@ fi
 if [ -f /etc/lighttpd/lighttpd.conf ] ; then
 	echo "Updating lighttpd config as needed..."
 	if [ ! -f /etc/lighttpd/lighttpd-conf.original ] ; then
-		echo "Creating backup of lighttpd config"
+		echo "Creating backup of /etc/lighttpd/lighttpd.conf to /etc/lighttpd/lighttpd-conf.original"
 		sudo cp /etc/lighttpd/lighttpd.conf /etc/lighttpd/lighttpd-conf.original
 	fi
 	sudo sed -i "s/www-data/pi/" /etc/lighttpd/lighttpd.conf
@@ -95,7 +92,7 @@ if [ -f /etc/lighttpd/lighttpd.conf ] ; then
 		echo "Adding alias for image URLs..."
 		# See: http://stackoverflow.com/questions/82256/how-do-i-use-sudo-to-redirect-output-to-a-location-i-dont-have-permission-to-wr		
 		echo 'alias.url = ( "/sync/" => "/home/pi/sync/" )' | sudo tee -a /etc/lighttpd/lighttpd.conf >/dev/null
-	}	
+	}
 	if [ ! -f /etc/lighttpd/conf-enabled/10-cgi.conf ] ; then
 		sudo ln -s /etc/lighttpd/conf-available/10-cgi.conf /etc/lighttpd/conf-enabled/10-cgi.conf
 	fi
@@ -118,9 +115,18 @@ crontab -l | fgrep -q "cdpf-sync" && {
 } || {
 	echo "Adding cron job..."
 	if [ ! -f /tmp/crontab-cdpf.original ] ; then
+		echo "backup of crontab saved to /tmp/crontab-cdpf.original"
 		crontab -l >/tmp/crontab-cdpf.original 
 	fi
 	crontab -l >/tmp/crontab-cdpf.txt
 	echo "*/15 * * * * /home/pi/cdpf-sync.sh" >>/tmp/crontab-cdpf.txt
 	crontab /tmp/crontab-cdpf.txt
+}
+
+echo "Checking desktop manager config..."
+egrep -q '^xserver-command=X -s 0 dpms' /etc/lightdm/lightdm.conf || {
+	echo "Modifying desktop manager config"
+	echo "backup of /etc/lightdm/lightdm.conf saved to /etc/lightdm/lightdm-conf.original"
+	sudo cp /etc/lightdm/lightdm.conf /etc/lightdm/lightdm-conf.original
+	sudo sed -i "s/#xserver-command=X/xserver-command=X -s 0 dpms/" /etc/lightdm/lightdm.conf
 }
