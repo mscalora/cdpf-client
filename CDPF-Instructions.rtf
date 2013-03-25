@@ -13,7 +13,11 @@
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\qc
 
 \f0\b\fs36 \cf0 \expnd0\expndtw0\kerning0
-\up0 \nosupersub \ulnone \outl0\strokewidth0 \strokec0 CDPF Step-by-Step\
+\up0 \nosupersub \ulnone \outl0\strokewidth0 \strokec0 CDPF Step-by-Step 
+\fs18 \expnd0\expndtw0\kerning0
+v1.3
+\fs36 \expnd0\expndtw0\kerning0
+\
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural
 
 \b0\fs24 \expnd0\expndtw0\kerning0
@@ -268,15 +272,19 @@ Disabling the Screen Saver/Blanker \
 
 \b0 \expnd0\expndtw0\kerning0
 \
-There is one last optional step to disable the screen saver which will blank the screen after a few minutes of inactivity. You need to edit the lightdm.conf file and add one line:\
+This is now taken care of by the setup.sh script!\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural
+\expnd0\expndtw0\kerning0
+\strike \strikec0 There is one last optional step to disable the screen saver which will blank the screen after a few minutes of inactivity. You need to edit the lightdm.conf file and add one line:\
 \
   
 \b \cf3 \expnd0\expndtw0\kerning0
-\strokec3 pi@raspberrypi ~ $\cf0 \expnd0\expndtw0\kerning0
-\strokec0  \cf4 \expnd0\expndtw0\kerning0
-\strokec4 sudo nano /etc/lightdm/lightdm.conf
+\strikec3 \strokec3 pi@raspberrypi ~ $\cf0 \expnd0\expndtw0\kerning0
+\strikec0 \strokec0  \cf4 \expnd0\expndtw0\kerning0
+\strikec4 \strokec4 sudo nano /etc/lightdm/lightdm.conf
 \b0 \cf0 \expnd0\expndtw0\kerning0
-\strokec0 \
+\strikec0 \strokec0 \
 \
 Arrow down until you see (or Ctrl-W and search for #server-co):\
 \
@@ -297,4 +305,26 @@ and add the following line right after it:\
 \f0 \expnd0\expndtw0\kerning0
 \
 \
-Now, you are ready to reboot.}
+Now, you are ready to reboot.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural
+\expnd0\expndtw0\kerning0
+\strike0\striked0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural
+
+\b \expnd0\expndtw0\kerning0
+Reboot \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural
+
+\b0 \expnd0\expndtw0\kerning0
+\
+There\'92s no on/off switch so you can either pull the power, wait a sec and plug to power back in or runt he following command:\
+\
+  
+\b \cf3 \expnd0\expndtw0\kerning0
+\strokec3 pi@raspberrypi ~ $\cf0 \expnd0\expndtw0\kerning0
+\strokec0  \cf4 \expnd0\expndtw0\kerning0
+\strokec4 sudo reboot
+\b0 \cf0 \expnd0\expndtw0\kerning0
+\strokec0 \
+\
+}

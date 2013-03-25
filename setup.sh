@@ -116,9 +116,9 @@ crontab -l | fgrep -q "cdpf-sync" && {
 	echo "Adding cron job..."
 	if [ ! -f /tmp/crontab-cdpf.original ] ; then
 		echo "backup of crontab saved to /tmp/crontab-cdpf.original"
-		crontab -l >/tmp/crontab-cdpf.original 
+		crontab -l >/tmp/crontab-cdpf.original 2>/dev/null
 	fi
-	crontab -l >/tmp/crontab-cdpf.txt
+	crontab -l >/tmp/crontab-cdpf.txt 2>/dev/null
 	echo "*/15 * * * * /home/pi/cdpf-sync.sh" >>/tmp/crontab-cdpf.txt
 	crontab /tmp/crontab-cdpf.txt
 }
