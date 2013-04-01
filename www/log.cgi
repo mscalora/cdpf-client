@@ -1,5 +1,5 @@
 #! /bin/bash
-export CDPF_LOG=/var/log/cdpf.log
+export CDPF_LOG=/var/log/cdpf/cdpf.log
 echo "Content-type: text/html"
 echo ""
 echo "<h3>CDPF Log</h3><pre>"
