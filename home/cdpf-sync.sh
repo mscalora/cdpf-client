@@ -11,8 +11,7 @@ wget -mNrnd -l 1 "$CDPF_SYNC_URL" 2>&1 | tee rawout.txt | egrep '^--' | egrep -o
 
 if [ -s filelist.txt ]; then
 
-	for f in $(ls -a *.jpeg *.jpg *.png *.gif 2>/dev/null)
-	do
+	for f in $( shopt -s nocaseglob ; ls *.jpg *.jpeg *.png *.gif 2>/dev/null ) ; do
 		grep -qF "$f" filelist.txt
 		if [ $? -eq 1 ] ; then
 			rm "$f"
