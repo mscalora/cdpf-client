@@ -50,9 +50,9 @@ for f in $(ls "$SETUP_PATH/home" ) ; do
 done
 
 echo "Copying cgis..."
+sudo mkdir -p "/var/www/cgi-bin"
 sudo chgrp pi "/var/www"
 sudo chmod g+w "/var/www"
-sudo mkdir -p "/var/www/cgi-bin"
 sudo chgrp pi "/var/www/cgi-bin"
 sudo chmod g+wx "/var/www/cgi-bin"
 for f in $(ls "$SETUP_PATH/www" ) ; do
