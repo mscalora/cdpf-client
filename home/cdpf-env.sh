@@ -35,7 +35,7 @@ else
 #!/bin/bash
 # on lines with ###, fill in the values and remove the ###
 # sync URL
-###CDPF_SYNC_URL="http://scalora.net/test-photos"
+###CDPF_SYNC_URL="http://test-cdpfserver.rhcloud.com/sync"
 # slide show delay
 ###CDPF_PHOTO_DELAY=6
 
