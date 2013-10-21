@@ -7,7 +7,7 @@ cd /home/pi/sync
 
 rm -f filelist.txt
 
-wget -mNrnd -l 1 "$CDPF_SYNC_URL" 2>&1 | tee rawout.txt | egrep '^--' | egrep -o '[-a-zA-Z0-9_.]*[.](jpe?g|png|gif)' | sort -u >filelist.txt
+wget -mNrnd -l 1 -U CDPF "$CDPF_SYNC_URL" 2>&1 | tee rawout.txt | egrep '^--' | egrep -o '[-a-zA-Z0-9_.]*[.](jpe?g|png|gif)' | sort -u >filelist.txt
 
 if [ -s filelist.txt ]; then
 
