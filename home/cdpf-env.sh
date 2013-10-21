@@ -5,7 +5,7 @@
 #
 CDPF_BASE="/home/pi"
 # sync url
-CDPF_SYNC_URL="http://scalora.net/test-photos"
+CDPF_SYNC_URL="http://test-cdpfserver.rhcloud.com/sync"
 # how many seconds between photos
 CDPF_PHOTO_DELAY=6			
 # extra feh options
